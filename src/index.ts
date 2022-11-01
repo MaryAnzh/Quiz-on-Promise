@@ -10,7 +10,8 @@ const page: PageRenderer = new Main();
 const viewPage = async (): Promise<void> => {
     const body = document.querySelector('body');
     const content = document.createElement('main');
-    
+    content.classList.add('page');
+
     const wrapper = document.createElement('div');
     wrapper.classList.add('wrapper');
     body.append(wrapper);

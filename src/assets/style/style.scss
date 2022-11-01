@@ -20,6 +20,7 @@ body {
     width: 100%;
     font-family: 'Roboto';
     font-style: normal;
+    color: $fontColor;
     display: flex;
     justify-content: center;
 }
@@ -31,6 +32,10 @@ body {
     margin-top: 50px;
     display: flex;
     justify-content: center;
+}
+
+.page {
+    width: 100%;
 }
 
 @import './common/common.scss';

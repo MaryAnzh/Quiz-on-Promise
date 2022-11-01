@@ -5,7 +5,7 @@ class Main implements PageRenderer {
   render(): Promise<string> {
     const view =  /*html*/`
     <div class="main-wrapper">
-      <h2>Free Task</h2>
+      <h2 class="main-wrapper__title">Free Task</h2>
       <section class="main-wrapper__form-view"></section>
       <section class="main-wrapper__form-result"></section>
     </div>

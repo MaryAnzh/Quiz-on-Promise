@@ -6,13 +6,14 @@ class FormComponent implements PageRenderer {
 
     public form: null | HTMLFormElement = null;
     public buttons: null | NodeListOf<Element> = null;
+    public isPrevButtonBlock: boolean = true;
 
     render(): Promise<string> {
         const view = `
         <form class="number-form">
           <labe class="number-form__title"l>Введите число</label>
           <dov class="number-form__input-block">
-            <button class="number-form__input-block__button" data-type="prev">-</button>
+            <button class="number-form__input-block__button blocked" data-type="prev">-</button>
             <input
               name="number"
               type="number"
@@ -52,11 +53,19 @@ class FormComponent implements PageRenderer {
                 if (prevNumber > 0) {
                     this.formServ.setInputValue(prevNumber);
                 }
+                if (prevNumber === 0) {
+                    elem.classList.add('blocked');
+                    this.isPrevButtonBlock = true;
+                }
             }
             if (type === 'next') {
-
                 const nextNumber = value + 1;
                 this.formServ.setInputValue(nextNumber);
+                if (this.isPrevButtonBlock) {
+                    this.isPrevButtonBlock = false;
+                    this.buttons.forEach(el => el.classList.remove('blocked'));
+                }
+
             }
         }
         //наверное костыль, т.к. не срабатывал слушатель при событии

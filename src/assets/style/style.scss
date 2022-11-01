@@ -42,4 +42,9 @@ section {
     width: 100%;
 }
 
+.blocked {
+    pointer-events: none;
+    opacity: 0.5;
+}
+
 @import './common/common.scss';

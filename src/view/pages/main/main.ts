@@ -29,16 +29,20 @@ class Main implements PageRenderer {
   async after_render(): Promise<void> {
     this.formWrap = <HTMLFormElement>document.querySelector('.main-wrapper__form-view');
     this.formWrap.innerHTML = await this.numberForm.render();
+
     this.form = document.querySelector('.number-form');
     this.numberInput = document.querySelector('.number-form__input-block__field');
     this.inputView = document.querySelector('.main-wrapper__form-result__result-view');
     this.formServ = new FormService(this.form);
 
     this.numberInput.addEventListener('input', (e) => this.listenInputVslue(e));
+
+    await this.numberForm.after_render();
     return Promise.resolve();
   }
 
   listenInputVslue(e: Event): void {
+    console.log('input');
     const elem = <HTMLInputElement>e.target;
     const value = elem.value;
     this.inputView.textContent = value;

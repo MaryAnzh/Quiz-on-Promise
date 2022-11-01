@@ -6,6 +6,8 @@ class Main implements PageRenderer {
     const view =  /*html*/`
     <div class="main-wrapper">
       <h2>Free Task</h2>
+      <section class="main-wrapper__form-view"></section>
+      <section class="main-wrapper__form-result"></section>
     </div>
     `;
     return Promise.resolve(view);

@@ -1,6 +1,9 @@
 import { PageRenderer } from '../../../model/page-renderer.model';
+import { FormComponent } from '../../components/form/form.component';
 
 class Main implements PageRenderer {
+  public numberForm: FormComponent = new FormComponent();
+  public formWrap: null | HTMLFormElement = null;
 
   render(): Promise<string> {
     const view =  /*html*/`
@@ -13,7 +16,9 @@ class Main implements PageRenderer {
     return Promise.resolve(view);
   }
 
-  after_render(): Promise<void> {
+  async after_render(): Promise<void> {
+    this.formWrap = <HTMLFormElement>document.querySelector('.main-wrapper__form-view');
+    this.formWrap.innerHTML = await this.numberForm.render();
 
 
     return Promise.resolve();

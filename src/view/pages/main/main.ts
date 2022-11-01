@@ -10,7 +10,10 @@ class Main implements PageRenderer {
     <div class="main-wrapper">
       <h2 class="main-wrapper__title">Free Task</h2>
       <section class="main-wrapper__form-view"></section>
-      <section class="main-wrapper__form-result"></section>
+      <section class="main-wrapper__form-result">
+        <h4 class="main-wrapper__form-result__title">Вы ввели число:</h4>
+        <div class="main-wrapper__form-result__result-views"></div>
+      </section>
     </div>
     `;
     return Promise.resolve(view);
@@ -19,7 +22,6 @@ class Main implements PageRenderer {
   async after_render(): Promise<void> {
     this.formWrap = <HTMLFormElement>document.querySelector('.main-wrapper__form-view');
     this.formWrap.innerHTML = await this.numberForm.render();
-
 
     return Promise.resolve();
   }

@@ -5,6 +5,8 @@ const toDo: string[] = [
 ];
 
 const done = [
-    'going to the cinema'
+    'going to the cinema',
+    'something else'
 ];
+
 export { toDo, done };

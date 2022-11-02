@@ -1,7 +1,9 @@
+import { IItemData } from '../data/data-item-intarface';
+
 class LocalStorageService {
     constructor() { }
 
-    setData(key: string, value: string[]): void {
+    setData(key: string, value: IItemData[]): void {
         if (value) {
             localStorage.setItem(
                 key, JSON.stringify(value)
@@ -11,7 +13,7 @@ class LocalStorageService {
         }
     }
 
-    getData(key: string): string[] | null {
+    getData(key: string): IItemData[] | null {
         const data = localStorage.getItem(key);
         return data
             ? JSON.parse(data) :

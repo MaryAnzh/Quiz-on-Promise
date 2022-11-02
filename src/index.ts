@@ -5,22 +5,24 @@ import { TodoList } from './model/todo-list/todo-list';
 import { toDo, done } from './data/lists-data';
 import { LocalStorageService } from './service/localStorage';
 
+const addDatatoLocalStorge = () => {
+    const localStorge = new LocalStorageService();
+    const toDoTitle = 'toDo';
+    const doneTitle = 'Done';
+    localStorge.setData(toDoTitle, toDo);
+    localStorge.setData(doneTitle, done);
+}
+addDatatoLocalStorge();
+
 class PageModel {
-    public local = new LocalStorageService();
     public toDoTitle = 'toDo';
     public doneTitle = 'Done';
-    public todoData: string[];
-    private doneData: string[];
 
     public body: HTMLElement;
     public main: HTMLElement;
     public wrapper: HTMLElement;
 
-    constructor(todoD: string[], doneD: string[]) {
-        this.todoData = todoD;
-        this.doneData = doneD;
-        this.addDataToLocalStorage();
-
+    constructor() {
         this.body = document.querySelector('body');
         this.main = document.createElement('main');
         this.main.classList.add('page');
@@ -33,13 +35,8 @@ class PageModel {
         const toDoList = new TodoList(this.main, this.toDoTitle, localKey);
         const doneList = new TodoList(this.main, this.doneTitle, localKey);
     }
-
-    addDataToLocalStorage(): void {
-        this.local.setData(this.toDoTitle, this.todoData);
-        this.local.setData(this.doneTitle, this.doneData);
-    }
 }
 
-const page = () => new PageModel(toDo, done);
+const page = () => new PageModel();
 
 window.addEventListener('load', page);

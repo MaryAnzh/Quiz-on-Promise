@@ -1,28 +1,27 @@
 import { LocalStorageService } from '../../service/localStorage';
+import { IItemData } from '../../data/data-item-intarface';
 
 class TodoItem {
     public item: HTMLLIElement;
-    public number: number;
-    public content: string;
+    public itemData: IItemData;
     public onClick: (e: Event) => void;
-
-    public listName: string;
 
     private _localStorge = new LocalStorageService();
 
-    constructor(itemName: string, itemNum: number, listName: string) {
+    constructor(data: IItemData) {
         this.item = document.createElement('li');
-        this.item.textContent = itemName;
-        this.number = itemNum;
-        this.content = itemName;
+        this.itemData = data;
+        this.item.textContent = this.itemData.content;
         this.onClick = (e) => this.itemOnCkick(e);
-        this.listName = listName;
 
         this.item.addEventListener('click', this.onClick);
     }
 
     itemOnCkick(e: Event) {
-        console.log(this.listName, (this.number + 1), this.content);
+        console.log(`List: ${this.itemData.perentList}`);
+        console.log(`${this.itemData.number}. ${this.itemData.content}`);
+
+        //this.item.removeEventListener('click', this.onClick);
     }
 }
 

@@ -1,5 +1,6 @@
 import { LocalStorageService } from '../../service/localStorage';
 import { TodoItem } from '../todo-item/todo-item';
+import { IItemData } from '../../data/data-item-intarface';
 
 class TodoList {
     public wrapper: HTMLDivElement;
@@ -8,7 +9,7 @@ class TodoList {
 
     public listName: string;
 
-    public todoData: string[];
+    public todoData: IItemData[];
     public localStorage = new LocalStorageService();
 
     constructor(perentNode: HTMLElement, listName: string, localStorageKey: string[]) {
@@ -28,8 +29,8 @@ class TodoList {
 
     createtodoList(): void {
         if (this.todoData) {
-            this.todoData.forEach((el, i) => {
-                const itemComponent = new TodoItem(el, i, this.listName);
+            this.todoData.forEach((elData, i) => {
+                const itemComponent = new TodoItem(elData);
                 this.list.append(itemComponent.item);
             });
         }

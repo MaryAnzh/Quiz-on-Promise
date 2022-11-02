@@ -28,41 +28,13 @@ class TodoList {
 
     createtodoList(): void {
         if (this.todoData) {
-            this.todoData.forEach(el => {
-                const itemComponent = new TodoItem(el);
+            this.todoData.forEach((el, i) => {
+                const itemComponent = new TodoItem(el, i, this.listName);
                 this.list.append(itemComponent.item);
             });
         }
 
     }
-
-    removeListItemOnClick(e: Event): void {
-        const elem = e.target;
-        let elemIndex = -1;
-        this.list.childNodes.forEach((el, i) => {
-            if (el === elem) {
-                elemIndex = i;
-
-            }
-        });
-        //const listItem = this.todoData[elemIndex];
-        //this.removeItemFromDataList(listItem);
-        //elem.removeEventListener('click', this.events[elemIndex]);
-
-    }
-
-    removeItemFromDataList(listItem: string): void {
-        const localStorageData = this.localStorage.getData(this.listName);
-        const newData = localStorageData.reduce((arr, curr) => {
-            if (curr !== listItem) {
-                arr.push(curr);
-            }
-            return arr;
-        }, []);
-        console.log(newData);
-        this.localStorage.setData(this.listName, newData);
-
-    }
-
 }
+
 export { TodoList }

@@ -1,7 +1,7 @@
 "use strict";
 
 import './assets/style/style.scss';
-import { TodoList } from './model/todo-list';
+import { TodoList } from './model/todo-list/todo-list';
 import { toDo, done } from './data/lists-data';
 import { LocalStorageService } from './service/localStorage';
 
@@ -29,8 +29,9 @@ class PageModel {
         this.body.append(this.wrapper);
         this.wrapper.append(this.main);
 
-        const toDoList = new TodoList(this.main, this.toDoTitle);
-        const doneList = new TodoList(this.main, this.doneTitle);
+        const localKey = [this.toDoTitle, this.doneTitle];
+        const toDoList = new TodoList(this.main, this.toDoTitle, localKey);
+        const doneList = new TodoList(this.main, this.doneTitle, localKey);
     }
 
     addDataToLocalStorage(): void {

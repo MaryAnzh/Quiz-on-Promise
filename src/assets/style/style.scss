@@ -5,12 +5,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@600;700&display=swap');
-
+@import '../../model/todo-list.scss';
 
 @import './utils/reset.scss';
 @import './utils/vareable';
-
-@import '../../view/pages/main/main.scss';
 
 * {
     box-sizing: border-box;

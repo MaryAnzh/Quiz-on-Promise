@@ -1,24 +1,23 @@
 "use strict";
 
 import './assets/style/style.scss';
+import { TodoList } from './model/todo-list';
+import { toDo, done } from './data/lists-data';
 
-import { PageRenderer } from './model/page-renderer.model';
-import { Main } from './view/pages/main/main';
-
-const page: PageRenderer = new Main();
-
-const viewPage = async (): Promise<void> => {
+const viewPage = () => {
+    //основная структура старницы
     const body = document.querySelector('body');
-    const content = document.createElement('main');
-    content.classList.add('page');
+    const main = document.createElement('main');
+    main.classList.add('page');
 
     const wrapper = document.createElement('div');
     wrapper.classList.add('wrapper');
     body.append(wrapper);
-    wrapper.append(content);
+    wrapper.append(main);
 
-    content.innerHTML = await page.render();
-    await page.after_render();
+    //рендер списков
+    const toDoList = new TodoList(main, 'toDo', toDo);
+    const doneList = new TodoList(main, 'Done', done);
 }
 
 window.addEventListener('load', viewPage);

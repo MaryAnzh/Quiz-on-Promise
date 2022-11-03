@@ -1,6 +1,6 @@
 interface IItemData {
     content: string,
-    number: number,
+    id: number,
     perentList: string,
 }
 export { IItemData }

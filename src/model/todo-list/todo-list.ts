@@ -10,9 +10,11 @@ class TodoList {
     public listName: string;
 
     public todoData: IItemData[];
+    public updateItemsInMain: Function;
+
     public localStorage = new LocalStorageService();
 
-    constructor(perentNode: HTMLElement, listName: string) {
+    constructor(perentNode: HTMLElement, listName: string, updateItemsBind: Function) {
         this.wrapper = document.createElement('div');
         this.wrapper.classList.add('list-wrap');
         this.listName = listName;
@@ -24,17 +26,34 @@ class TodoList {
         perentNode.append(this.wrapper);
 
         this.todoData = this.localStorage.getData(listName);
+        this.updateItemsInMain = updateItemsBind;
+
         this.createtodoList();
     }
 
     createtodoList(): void {
         if (this.todoData) {
-            this.todoData.forEach((elData, i) => {
-                const itemComponent = new TodoItem(elData);
+            this.todoData.forEach((elData) => {
+                const itemComponent = new TodoItem(elData, this.updateListInfoInPerent.bind(this));
                 this.list.append(itemComponent.item);
             });
         }
 
+    }
+
+    addItemInList(data: IItemData): void {
+        const itemData: IItemData = {
+            content: data.content,
+            id: data.id,
+            perentList: this.listName,
+        }
+        const itemComponent = new TodoItem(itemData, this.updateListInfoInPerent.bind(this));
+        this.list.append(itemComponent.item);
+    }
+
+    updateListInfoInPerent(itemData: IItemData) {
+        console.log(`Строка ${itemData.content} удалена из списка`);
+        this.updateItemsInMain(itemData);
     }
 }
 

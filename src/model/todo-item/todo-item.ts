@@ -6,20 +6,23 @@ class TodoItem {
     public item: HTMLLIElement;
     public itemData: IItemData;
     public onClick: (e: Event) => void;
+    public updatePerent: Function;
 
     private _localStorge = new LocalStorageService();
 
-    constructor(data: IItemData) {
+    constructor(data: IItemData, updatePerentList: Function) {
         this.item = document.createElement('li');
         this.itemData = data;
         this.item.textContent = this.itemData.content;
         this.onClick = (e) => this.changeItemsPerentOnCkick(e);
+        this.updatePerent = updatePerentList;
 
         this.item.addEventListener('click', this.onClick);
     }
 
     changeItemsPerentOnCkick(e: Event) {
-        
+        this.destroy();
+        this.updatePerent(this.itemData);
     }
 
     destroy() {

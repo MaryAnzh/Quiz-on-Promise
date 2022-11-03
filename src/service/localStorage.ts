@@ -1,6 +1,9 @@
 import { IItemData } from '../data/data-item-intarface';
+import { ILocalStorgeKey } from '../data/localstorge-key-interface';
 
 class LocalStorageService {
+    public keys: string[] = ['toDo', 'Done'];
+
     constructor() { }
 
     setData(key: string, value: IItemData[]): void {
@@ -18,6 +21,16 @@ class LocalStorageService {
         return data
             ? JSON.parse(data) :
             null;
+    }
+
+    getAllKeys(): ILocalStorgeKey[] {
+        return this.keys.map(key => {
+            const listInfo: ILocalStorgeKey = {
+                name: key,
+                data: this.getData(key),
+            }
+            return listInfo;
+        });
     }
 }
 

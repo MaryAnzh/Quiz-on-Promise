@@ -1,5 +1,6 @@
 import { LocalStorageService } from '../../service/localStorage';
 import { IItemData } from '../../data/data-item-intarface';
+import { ILocalStorgeKey } from '../../data/localstorge-key-interface';
 
 class TodoItem {
     public item: HTMLLIElement;
@@ -12,16 +13,18 @@ class TodoItem {
         this.item = document.createElement('li');
         this.itemData = data;
         this.item.textContent = this.itemData.content;
-        this.onClick = (e) => this.itemOnCkick(e);
+        this.onClick = (e) => this.changeItemsPerentOnCkick(e);
 
         this.item.addEventListener('click', this.onClick);
     }
 
-    itemOnCkick(e: Event) {
-        console.log(`List: ${this.itemData.perentList}`);
-        console.log(`${this.itemData.number}. ${this.itemData.content}`);
+    changeItemsPerentOnCkick(e: Event) {
+        
+    }
 
-        //this.item.removeEventListener('click', this.onClick);
+    destroy() {
+        this.item.removeEventListener('click', this.onClick);
+        this.item.remove();
     }
 }
 

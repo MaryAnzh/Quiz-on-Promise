@@ -12,7 +12,7 @@ class TodoList {
     public todoData: IItemData[];
     public localStorage = new LocalStorageService();
 
-    constructor(perentNode: HTMLElement, listName: string, localStorageKey: string[]) {
+    constructor(perentNode: HTMLElement, listName: string) {
         this.wrapper = document.createElement('div');
         this.wrapper.classList.add('list-wrap');
         this.listName = listName;

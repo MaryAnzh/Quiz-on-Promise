@@ -4,6 +4,7 @@ import './assets/style/style.scss';
 import { TodoList } from './model/todo-list/todo-list';
 import { toDo, done } from './data/lists-data';
 import { LocalStorageService } from './service/localStorage';
+import { ILocalStorgeKey } from './data/localstorge-key-interface';
 
 const addDatatoLocalStorge = () => {
     const localStorge = new LocalStorageService();
@@ -17,10 +18,14 @@ addDatatoLocalStorge();
 class PageModel {
     public toDoTitle = 'toDo';
     public doneTitle = 'Done';
+    public toDoList: TodoList;
+    public doneList: TodoList;
 
     public body: HTMLElement;
     public main: HTMLElement;
     public wrapper: HTMLElement;
+
+    private _localStorge = new LocalStorageService();
 
     constructor() {
         this.body = document.querySelector('body');
@@ -31,9 +36,12 @@ class PageModel {
         this.body.append(this.wrapper);
         this.wrapper.append(this.main);
 
-        const localKey = [this.toDoTitle, this.doneTitle];
-        const toDoList = new TodoList(this.main, this.toDoTitle, localKey);
-        const doneList = new TodoList(this.main, this.doneTitle, localKey);
+        this.toDoList = new TodoList(this.main, this.toDoTitle);
+        this.doneList = new TodoList(this.main, this.doneTitle);
+    }
+
+    updateList(data: ILocalStorgeKey) {
+
     }
 }
 

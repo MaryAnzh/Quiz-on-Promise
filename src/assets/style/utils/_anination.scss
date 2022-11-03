@@ -1,0 +1,19 @@
+.out {
+    pointer-events: none;
+    animation: go-out .3s forwards;
+}
+
+.in {
+    pointer-events: none;
+    animation: go-out .3s reverse;
+}
+
+@keyframes go-out {
+    0% {
+        transform: translate(0);
+    }
+
+    100% {
+        transform: translate(-100%);
+    }
+}

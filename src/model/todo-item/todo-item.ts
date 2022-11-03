@@ -21,8 +21,12 @@ class TodoItem {
     }
 
     changeItemsPerentOnCkick(e: Event) {
-        this.destroy();
-        this.updatePerent(this.itemData);
+        this.item.classList.add('out');
+        setTimeout(() => {
+            this.destroy();
+            this.updatePerent(this.itemData);
+        }, 310);
+
     }
 
     destroy() {

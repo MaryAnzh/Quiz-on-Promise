@@ -48,7 +48,9 @@ class TodoList {
             perentList: this.listName,
         }
         const itemComponent = new TodoItem(itemData, this.updateListInfoInPerent.bind(this));
+        itemComponent.item.classList.add('in');
         this.list.append(itemComponent.item);
+        setTimeout(() => itemComponent.item.classList.remove('in'), 350);
     }
 
     updateListInfoInPerent(itemData: IItemData) {

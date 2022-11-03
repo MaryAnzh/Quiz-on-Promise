@@ -25,7 +25,7 @@ const done: IItemData[] = [
         perentList: 'Done',
     },
     {
-        content: 'omething else',
+        content: 'something else',
         id: 4,
         perentList: 'Done'
     }

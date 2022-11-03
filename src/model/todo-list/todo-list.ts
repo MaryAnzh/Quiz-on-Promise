@@ -48,13 +48,13 @@ class TodoList {
             perentList: this.listName,
         }
         const itemComponent = new TodoItem(itemData, this.updateListInfoInPerent.bind(this));
-        itemComponent.item.classList.add('in');
         this.list.append(itemComponent.item);
-        setTimeout(() => itemComponent.item.classList.remove('in'), 350);
+        itemComponent.item.classList.add('in');
+        //в принципе, если использовать animation API, то иожно без сеттаймаута, там есть свойство animation end, тогда будет с Promise
+        setTimeout(() => itemComponent.item.classList.remove('in'), 820);
     }
 
     updateListInfoInPerent(itemData: IItemData) {
-        console.log(`Строка ${itemData.content} удалена из списка`);
         this.updateItemsInMain(itemData);
     }
 }

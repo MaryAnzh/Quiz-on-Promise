@@ -1,0 +1,10 @@
+.list-item {
+    width: fit-content;
+    height: 20px;
+    cursor: pointer;
+    transition: .3s;
+
+    &:hover {
+        color: red;
+    }
+}

@@ -8,15 +8,5 @@
         padding: 20px;
         overflow: hidden;
         list-style: decimal;
-
-
-        li {
-            cursor: pointer;
-            transition: .3s;
-
-            &:hover {
-                color: red;
-            }
-        }
     }
 }

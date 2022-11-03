@@ -1,11 +1,16 @@
 .out {
     pointer-events: none;
-    animation: go-out .3s forwards;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: go-out .8s linear forwards;
 }
 
 .in {
+    position: relative;
     pointer-events: none;
-    animation: go-out .3s reverse;
+    animation: go-out .8s linear reverse;
 }
 
 @keyframes go-out {
@@ -13,7 +18,13 @@
         transform: translate(0);
     }
 
+    80% {
+        transform: translateX(-130%);
+        height: 20px;
+    }
+
     100% {
-        transform: translate(-100%);
+        transform: translateX(-130%);
+        height: 0px;
     }
 }

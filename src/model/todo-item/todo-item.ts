@@ -1,6 +1,4 @@
-import { LocalStorageService } from '../../service/localStorage';
 import { IItemData } from '../../data/data-item-intarface';
-import { ILocalStorgeKey } from '../../data/localstorge-key-interface';
 
 class TodoItem {
     public item: HTMLLIElement;
@@ -8,10 +6,9 @@ class TodoItem {
     public onClick: (e: Event) => void;
     public updatePerent: Function;
 
-    private _localStorge = new LocalStorageService();
-
     constructor(data: IItemData, updatePerentList: Function) {
         this.item = document.createElement('li');
+        this.item.classList.add('list-item');
         this.itemData = data;
         this.item.textContent = this.itemData.content;
         this.onClick = (e) => this.changeItemsPerentOnCkick(e);
@@ -25,7 +22,7 @@ class TodoItem {
         setTimeout(() => {
             this.destroy();
             this.updatePerent(this.itemData);
-        }, 310);
+        }, 850);
 
     }
 

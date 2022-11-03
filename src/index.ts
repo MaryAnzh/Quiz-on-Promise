@@ -42,27 +42,28 @@ class PageModel {
     }
 
     updateItemsInList(itemData: IItemData) {
-        console.log(`Обновить ${itemData.perentList}, строку ${itemData.content}`);
         const currentperentList = itemData.perentList;
-        const curretDataList = this._localStorge.getData(itemData.perentList);
-        const updateDataRemoveItem = curretDataList.filter(el => el.id !== itemData.id);
-        this._localStorge.setData(itemData.perentList, updateDataRemoveItem);
-        if (currentperentList == "toDo") {
-            itemData.perentList = 'Done';
-            const updateDataAddItem = this._localStorge.getData('Done');
-            updateDataAddItem.push(itemData);
-            this._localStorge.setData('Done', updateDataAddItem);
-            this.doneList.addItemInList(itemData);
+        const newPerent = this.changePerent(currentperentList);
+        const curretDataList = this._localStorge.getData(currentperentList);
 
+        const updateDataRemoveItem = curretDataList.filter(el => el.id !== itemData.id);
+        this._localStorge.setData(currentperentList, updateDataRemoveItem);
+
+        itemData.perentList = newPerent;
+        const updateDataAddItem = this._localStorge.getData(newPerent);
+        updateDataAddItem.push(itemData);
+        this._localStorge.setData(newPerent, updateDataAddItem);
+
+        if (currentperentList == "toDo") {
+            this.doneList.addItemInList(itemData);
         }
         if (currentperentList === 'Done') {
-            itemData.perentList = 'toDo';
-            const updateDataAddItem = this._localStorge.getData('toDo');
-            updateDataAddItem.push(itemData);
-            this._localStorge.setData('toDo', updateDataAddItem);
             this.toDoList.addItemInList(itemData);
         }
-        console.log(this._localStorge.getAllKeys())
+    }
+
+    changePerent(perentList: string): string {
+        return perentList === 'toDo' ? 'Done' : 'toDo';
     }
 }
 

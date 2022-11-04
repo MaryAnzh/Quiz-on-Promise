@@ -16,11 +16,10 @@ class TodoItem {
     }
 
     onClick = () => {
-        this.item.classList.add('out');
-        setTimeout(() => {
+        this.animationOut().then(() => {
             this.destroy();
             this.updatePerent(this.itemData);
-        }, 850);
+        });
     }
 
     animationIn(): void {
@@ -35,7 +34,7 @@ class TodoItem {
             });
     }
 
-    animationOut(): void {
+    animationOut(): Promise<Animation> {
         const animation = this.item.animate({
             transform: ['translate(0%)', 'translateX(-130%)', 'translateX(-130%)'],
             height: ['20px', '20px', '0px'],
@@ -45,9 +44,7 @@ class TodoItem {
                 easing: 'linear',
             });
 
-        animation.finished.then(() => {
-            this.destroy();
-        });
+        return animation.finished;
     }
 
     destroy(): void {

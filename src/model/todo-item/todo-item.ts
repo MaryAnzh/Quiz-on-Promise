@@ -3,7 +3,6 @@ import { IItemData } from '../../data/data-item-intarface';
 class TodoItem {
     public item: HTMLLIElement;
     public itemData: IItemData;
-    public onClick: (e: Event) => void;
     public updatePerent: Function;
 
     constructor(data: IItemData, updatePerentList: Function) {
@@ -11,23 +10,37 @@ class TodoItem {
         this.item.classList.add('list-item');
         this.itemData = data;
         this.item.textContent = this.itemData.content;
-        this.onClick = (e) => this.changeItemsPerentOnCkick(e);
-        this.updatePerent = updatePerentList;
+        this.item.onclick = this.onClick;
 
-        this.item.addEventListener('click', this.onClick);
+        this.updatePerent = updatePerentList;
     }
 
-    changeItemsPerentOnCkick(e: Event) {
+    onClick = () => {
         this.item.classList.add('out');
         setTimeout(() => {
             this.destroy();
             this.updatePerent(this.itemData);
         }, 850);
+    }
+
+    animationIn() {
+        // const animation = this.item.animate([
+
+        //     { transform: 'translate(0%)' },
+        //     {
+        //         transform: 'translateX(-130%)',
+        //     },
+        // ], {
+        //     // timing options
+        //     duration: 1000,
+        //     easing: 'linear',
+        //     fill: 'forwards'
+        // });
 
     }
 
     destroy() {
-        this.item.removeEventListener('click', this.onClick);
+        this.item.onclick = null;
         this.item.remove();
     }
 }

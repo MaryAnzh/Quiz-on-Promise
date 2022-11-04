@@ -42,19 +42,13 @@ class TodoList {
     }
 
     addItemInList(data: IItemData): void {
-        const itemData: IItemData = {
-            content: data.content,
-            id: data.id,
-            perentList: this.listName,
-        }
-        const itemComponent = new TodoItem(itemData, this.updateListInfoInPerent.bind(this));
+        data.perentList = this.listName;
+        const itemComponent = new TodoItem(data, this.updateListInfoInPerent);
         this.list.append(itemComponent.item);
-        itemComponent.item.classList.add('in');
-        //в принципе, если использовать animation API, то иожно без сеттаймаута, там есть свойство animation end, тогда будет с Promise
-        setTimeout(() => itemComponent.item.classList.remove('in'), 820);
+        itemComponent.animationIn();
     }
 
-    updateListInfoInPerent(itemData: IItemData) {
+    updateListInfoInPerent = (itemData: IItemData) => {
         this.updateItemsInMain(itemData);
     }
 }

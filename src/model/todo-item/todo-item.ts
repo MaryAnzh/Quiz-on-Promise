@@ -23,23 +23,37 @@ class TodoItem {
         }, 850);
     }
 
-    animationIn() {
-        // const animation = this.item.animate([
+    animationIn(): Promise<Animation> {
+        const animation = this.item.animate({
+            transform: ['translate(-130%)', 'translateX(-130%)', 'translateX(0%)'],
+            height: ['0px', '20px', '20px'],
+        },
+            {
+                // timing options
+                duration: 1000,
+                easing: 'linear',
+            });
 
-        //     { transform: 'translate(0%)' },
-        //     {
-        //         transform: 'translateX(-130%)',
-        //     },
-        // ], {
-        //     // timing options
-        //     duration: 1000,
-        //     easing: 'linear',
-        //     fill: 'forwards'
-        // });
+        return animation.finished;
 
     }
 
-    destroy() {
+    animationOut(): void {
+        const animation = this.item.animate({
+            transform: ['translate(0%)', 'translateX(-130%)', 'translateX(-130%)'],
+            height: ['20px', '20px', '0px'],
+        },
+            {
+                duration: 1000,
+                easing: 'linear',
+            });
+
+        animation.finished.then(() => {
+            this.destroy();
+        });
+    }
+
+    destroy(): void {
         this.item.onclick = null;
         this.item.remove();
     }

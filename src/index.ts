@@ -37,11 +37,11 @@ class PageModel {
         this.body.append(this.wrapper);
         this.wrapper.append(this.main);
 
-        this.toDoList = new TodoList(this.main, this.toDoTitle, this.updateItemsInList.bind(this));
-        this.doneList = new TodoList(this.main, this.doneTitle, this.updateItemsInList.bind(this));
+        this.toDoList = new TodoList(this.main, this.toDoTitle, this.updateItemsInList);
+        this.doneList = new TodoList(this.main, this.doneTitle, this.updateItemsInList);
     }
 
-    updateItemsInList(itemData: IItemData) {
+    updateItemsInList = (itemData: IItemData) => {
         const currentperentList = itemData.perentList;
         const newPerent = this.changePerent(currentperentList);
         const curretDataList = this._localStorge.getData(currentperentList);

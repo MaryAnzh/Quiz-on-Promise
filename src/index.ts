@@ -41,26 +41,27 @@ class PageModel {
         this.doneList = new TodoList(this.main, this.doneTitle, this.updateItemsInList);
     }
 
-    updateItemsInList = (itemData: IItemData) => {
-        const currentperentList = itemData.perentList;
-        const newPerent = this.changePerent(currentperentList);
-        const curretDataList = this._localStorge.getData(currentperentList);
+    updateItemsInList: (data: IItemData) => void =
+        (itemData: IItemData) => {
+            const currentperentList = itemData.perentList;
+            const newPerent = this.changePerent(currentperentList);
+            const curretDataList = this._localStorge.getData(currentperentList);
 
-        const updateDataRemoveItem = curretDataList.filter(el => el.id !== itemData.id);
-        this._localStorge.setData(currentperentList, updateDataRemoveItem);
+            const updateDataRemoveItem = curretDataList.filter(el => el.id !== itemData.id);
+            this._localStorge.setData(currentperentList, updateDataRemoveItem);
 
-        itemData.perentList = newPerent;
-        const updateDataAddItem = this._localStorge.getData(newPerent);
-        updateDataAddItem.push(itemData);
-        this._localStorge.setData(newPerent, updateDataAddItem);
+            itemData.perentList = newPerent;
+            const updateDataAddItem = this._localStorge.getData(newPerent);
+            updateDataAddItem.push(itemData);
+            this._localStorge.setData(newPerent, updateDataAddItem);
 
-        if (currentperentList == "toDo") {
-            this.doneList.addItemInList(itemData);
+            if (currentperentList == "toDo") {
+                this.doneList.addItemInList(itemData);
+            }
+            if (currentperentList === 'Done') {
+                this.toDoList.addItemInList(itemData);
+            }
         }
-        if (currentperentList === 'Done') {
-            this.toDoList.addItemInList(itemData);
-        }
-    }
 
     changePerent(perentList: string): string {
         return perentList === 'toDo' ? 'Done' : 'toDo';

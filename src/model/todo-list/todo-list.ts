@@ -10,11 +10,11 @@ class TodoList {
     public listName: string;
 
     public todoData: IItemData[];
-    public updateItemsInMain: Function;
+    public updateItemsInMain: (data: IItemData) => void;
 
     public localStorage = new LocalStorageService();
 
-    constructor(perentNode: HTMLElement, listName: string, updateItemsBind: Function) {
+    constructor(perentNode: HTMLElement, listName: string, updateItemsBind: (data: IItemData) => void) {
         this.wrapper = document.createElement('div');
         this.wrapper.classList.add('list-wrap');
         this.listName = listName;
@@ -48,9 +48,10 @@ class TodoList {
         itemComponent.animationIn();
     }
 
-    updateListInfoInPerent = (itemData: IItemData) => {
-        this.updateItemsInMain(itemData);
-    }
+    updateListInfoInPerent: (data: IItemData) => void =
+        (itemData: IItemData) => {
+            this.updateItemsInMain(itemData);
+        }
 }
 
 export { TodoList }

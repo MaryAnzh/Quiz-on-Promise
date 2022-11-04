@@ -3,9 +3,9 @@ import { IItemData } from '../../data/data-item-intarface';
 class TodoItem {
     public item: HTMLLIElement;
     public itemData: IItemData;
-    public updatePerent: Function;
+    public updatePerent: (data: IItemData) => void;
 
-    constructor(data: IItemData, updatePerentList: Function) {
+    constructor(data: IItemData, updatePerentList: (data: IItemData) => void) {
         this.item = document.createElement('li');
         this.item.classList.add('list-item');
         this.itemData = data;
@@ -23,7 +23,7 @@ class TodoItem {
         }, 850);
     }
 
-    animationIn(): Promise<Animation> {
+    animationIn(): void {
         const animation = this.item.animate({
             transform: ['translate(-130%)', 'translateX(-130%)', 'translateX(0%)'],
             height: ['0px', '20px', '20px'],
@@ -33,9 +33,6 @@ class TodoItem {
                 duration: 1000,
                 easing: 'linear',
             });
-
-        return animation.finished;
-
     }
 
     animationOut(): void {

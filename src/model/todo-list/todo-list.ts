@@ -31,6 +31,11 @@ class TodoList {
         this.createtodoList();
     }
 
+    updateListInfoInPerent: (data: IItemData) => void =
+        (itemData: IItemData) => {
+            this.updateItemsInMain(itemData);
+        }
+
     createtodoList(): void {
         if (this.todoData) {
             this.todoData.forEach((elData) => {
@@ -47,11 +52,6 @@ class TodoList {
         this.list.append(itemComponent.item);
         itemComponent.animationIn();
     }
-
-    updateListInfoInPerent: (data: IItemData) => void =
-        (itemData: IItemData) => {
-            this.updateItemsInMain(itemData);
-        }
 }
 
 export { TodoList }

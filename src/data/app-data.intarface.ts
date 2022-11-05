@@ -4,5 +4,5 @@ export interface IAppData {
     questionNumber: number,
     gemePoint: number,
     trueAnswers: IImageData[],
-    falseAnswers: IImageData[]
+    falseAnswers: IImageData[],
 }

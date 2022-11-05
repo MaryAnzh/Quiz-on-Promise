@@ -1,13 +1,17 @@
 import { wrapperFunction } from '../../../service/function-wrapper';
 import { StartButton } from '../../components/start-button/start-button';
 import { QuestionComponent } from '../../components/questionComponent/question';
+import { AnswersComponent } from '../../components/answersComponent/answers';
+import { NextRoundComponent } from '../../components/nextRoudComponent/next-round.component';
 
 export class MainPage {
     public wrapper: HTMLDivElement;
     public main: HTMLElement;
     public startButton: StartButton;
     public score: HTMLParagraphElement
-    public question: QuestionComponent;
+    public question = new QuestionComponent();
+    public answers = new AnswersComponent();
+    public nextRoudSection = new NextRoundComponent();
 
     constructor() {
         this.wrapper = document.createElement('div');
@@ -18,7 +22,6 @@ export class MainPage {
         this.score = document.createElement('p');
         this.score.classList.add('mian__score');
         this.score.textContent = 'Score: 0';
-        this.question = new QuestionComponent;
 
         this.main.append(this.startButton.button);
         this.wrapper.append(this.main);
@@ -28,9 +31,13 @@ export class MainPage {
         const elements = {
             score: this.score,
             question: this.question,
-            answer: '',
-            nextButton: '',
+            answesr: this.answers,
+            nextRound: this.nextRoudSection,
         };
-        this.main.append(this.score, this.question.wrapper);
+        const p = document.createElement('p');
+        p.textContent = 'Игра началась';
+        this.main.append(p);
     }
+
+
 }

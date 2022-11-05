@@ -3,7 +3,7 @@ import { IAnswer } from "../../../data/answer.interface";
 export class AnswersComponent {
     list: HTMLUListElement;
     answerSet: IAnswer[] = [];
-    radioInputsSet: HTMLInputElement[] = []; s
+    radioInputsSet: HTMLInputElement[] = [];
 
     constructor() {
         this.list = document.createElement('ul');

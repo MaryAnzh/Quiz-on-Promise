@@ -1,6 +1,8 @@
 import { IAppData } from "../data/app-data.intarface";
 
-export function wrapper(data: IAppData): Promise<IAppData> {
+export function wrapperFunction(data: IAppData): Promise<IAppData> {
+
+    console.log('Function work');
     return new Promise((resolve) => {
 
 

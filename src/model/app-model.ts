@@ -1,8 +1,6 @@
 import { IAppData } from '../data/app-data.intarface';
-import magesData from '../data/magesData.json';
 
-
-class AppModel {
+export class AppModel {
     private _data: IAppData;
 
     constructor(initial: IAppData) {
@@ -22,5 +20,3 @@ class AppModel {
         return data;
     }
 }
-const data = JSON.stringify(magesData);
-const model = new AppModel(data);

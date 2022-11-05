@@ -1,4 +1,6 @@
+import { wrapper } from '../../../service/function-wrapper';
 import { StartButton } from '../../components/start-button/start-button';
+
 
 export class MainPage {
     public wrapper: HTMLDivElement;
@@ -13,5 +15,9 @@ export class MainPage {
         this.main.classList.add('mian');
         this.main.append(this.startButton.button);
         this.wrapper.append(this.main);
+    }
+
+    startGame = () => {
+        wrapper().then();
     }
 }

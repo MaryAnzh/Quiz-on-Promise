@@ -5,5 +5,10 @@ export class StartButton {
         this.button = document.createElement('button');
         this.button.classList.add('button');
         this.button.textContent = 'Start';
+        this.button.onclick = this.onClick;
+    }
+
+    onClick: () => void = () => {
+
     }
 }

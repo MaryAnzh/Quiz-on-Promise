@@ -11,7 +11,7 @@ export class NextRoundComponent {
         this.message.textContent = 'Ожидаем ваш выбор';
         this.button = document.createElement('button');
         this.button.classList.add('blocked');
-        this.button.textContent = 'Next';
+        this.button.textContent = 'next';
         this.wrapper.append(this.message, this.button);
     }
 }

@@ -1,6 +1,5 @@
 export interface IAnswer {
     number: number,
-    text: string,
+    author: string,
     isTrue: boolean,
-    trueAnswer: string,
 }

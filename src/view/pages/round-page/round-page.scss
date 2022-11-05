@@ -1,0 +1,21 @@
+.round-page {
+    &__info {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+
+        &__question-info {
+            width: fit-content;
+        }
+
+        &__score {
+            width: fit-content;
+
+            span {
+                font-weight: bold;
+            }
+        }
+    }
+
+
+}

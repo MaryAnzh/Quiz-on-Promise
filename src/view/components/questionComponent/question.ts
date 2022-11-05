@@ -8,6 +8,5 @@ export class QuestionComponent {
         this.text = document.createElement('p');
         this.text.classList.add('guestion__text');
         this.wrapper.append(this.text);
-        this.text.textContent = 'Заглушка';
     }
 }

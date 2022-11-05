@@ -7,7 +7,7 @@ export class AnswersComponent {
 
     constructor() {
         this.list = document.createElement('ul');
-        this.list.classList.add('question-list');
+        this.list.classList.add('answers-list');
     }
 
     createItemsList(items: IAnswer[]): HTMLInputElement[] {

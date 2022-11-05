@@ -1,0 +1,15 @@
+.answers-list {
+    padding: 20px;
+
+    li {
+        padding: 5px;
+
+        input {
+            cursor: pointer;
+        }
+
+        label {
+            padding-left: 10px;
+        }
+    }
+}

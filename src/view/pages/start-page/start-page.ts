@@ -1,21 +1,16 @@
 import { StartGame } from '../../../model/start-game.model';
 import { StartButton } from '../../components/start-button/start-button';
 
-class MainPage {
-    public wrapper: HTMLDivElement;
-    public main: HTMLElement;
+class StartPage {
+    public wrapper: HTMLElement;
     public startButton: StartButton;
     private _startGame = new StartGame();
 
     constructor() {
         this.wrapper = document.createElement('div');
-        this.wrapper.classList.add('wrapper');
-        this.main = document.createElement('main');
-        this.main.classList.add('mian');
+        this.wrapper.classList.add('start-pages');
         this.startButton = new StartButton(this.startGame);
-
-        this.main.append(this.startButton.button);
-        this.wrapper.append(this.main);
+        this.wrapper.append(this.startButton.button);
     }
 
     startGame = (): void => {
@@ -24,4 +19,4 @@ class MainPage {
     }
 }
 
-export const main = new MainPage();
+export const startPage = new StartPage();

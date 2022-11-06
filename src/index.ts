@@ -1,12 +1,10 @@
 "use strict";
 import './assets/style/style.scss';
-
-import { main } from './view/pages/main-page/main-page';
-
-const body = document.querySelector('body');
+import { appRender } from './view/pageRender';
+import { startPage } from './view/pages/start-page/start-page';
 
 const page = () => {
-    body.append(main.wrapper);
+    appRender.renderPage(startPage.wrapper);
 };
 
 window.onload = page;

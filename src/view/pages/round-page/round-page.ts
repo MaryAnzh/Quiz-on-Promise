@@ -31,10 +31,10 @@ export class RoundPage {
 
     }
 
-    upDateRoundInfo(data: IAppData, quwstionNumber: number, roundAnswers: IAnswer[]): HTMLInputElement[] {
-        this.questionInfo.innerHTML = `Вопрос ${quwstionNumber + 1} из 5`;
+    upDateRoundInfo(data: IAppData, roundAnswers: IAnswer[]): HTMLInputElement[] {
+        this.questionInfo.innerHTML = `Вопрос ${data.questionNumber + 1} из 5`;
         this.score.innerHTML = `Score: <span>${data.gemePoint}</span>`;
-        this.question.text.textContent = `Кто автор картины "${data.imagesData[quwstionNumber].name}"`;
+        this.question.text.textContent = `Кто автор картины "${data.imagesData[data.questionNumber].name}"`;
 
         this.main.append(this.infoWrap, this.question.wrapper, this.answers.list, this.nextRoudSection.wrapper);
         const radioSet = this.answers.createItemsList(roundAnswers);

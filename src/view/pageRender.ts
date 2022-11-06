@@ -29,8 +29,8 @@ class PageRender {
         this.main.append(this.roundPage.wrapper);
     }
 
-    updateRoundPage(data: IAppData, quwstionNumber: number, roundAnswers: IAnswer[]) {
-        this.roundPage.upDateRoundInfo(data, quwstionNumber, roundAnswers);
+    updateRoundPage(data: IAppData, roundAnswers: IAnswer[]) {
+        this.roundPage.upDateRoundInfo(data, roundAnswers);
     }
 }
 

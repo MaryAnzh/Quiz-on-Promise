@@ -11,7 +11,7 @@ export function wrapperFunction(data: IAppData): Promise<IAppData> {
     if (questionNumber < 6) {
         const gameModel = new GameModel();
         const roundAnswers: IAnswer[] = gameModel.createRoundAnswer(data.imagesData, questionNumber);
-        appRender.updateRoundPage(data, questionNumber, roundAnswers);
+        appRender.updateRoundPage(data, roundAnswers);
     }
 
     return new Promise((resolve) => {

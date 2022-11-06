@@ -28,16 +28,26 @@ export class RoundPage {
         this.infoWrap.append(this.questionInfo, this.score);
 
         this.wrapper.append(this.main);
-
     }
 
     upDateRoundInfo(data: IAppData, roundAnswers: IAnswer[]): HTMLInputElement[] {
         this.questionInfo.innerHTML = `Вопрос ${data.questionNumber + 1} из 5`;
         this.score.innerHTML = `Score: <span>${data.gemePoint}</span>`;
         this.question.text.textContent = `Кто автор картины "${data.imagesData[data.questionNumber].name}"`;
-
         this.main.append(this.infoWrap, this.question.wrapper, this.answers.list, this.nextRoudSection.wrapper);
         const radioSet = this.answers.createItemsList(roundAnswers);
         return radioSet;
+        // const result = new Promise<boolean>((res) => {
+
+        // });
     }
+
+    // roundResult(): Promise<boolean> {
+    //     //return new Promise<boolean>(res => this.answers.result ));
+    // }
+
+    // onChangeHandler: (answer: boolean) => boolean = (answer: boolean) => {
+    //     if ()
+    //         return answer;
+    // }
 }

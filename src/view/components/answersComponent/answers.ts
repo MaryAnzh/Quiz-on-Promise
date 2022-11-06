@@ -1,8 +1,15 @@
 import { IAnswer } from "../../../data/answer.interface";
+import { Radio } from '../radio';
+
+type RadiodInfo = {
+    radio: HTMLInputElement,
+    number: number,
+}
 
 export class AnswersComponent {
     list: HTMLUListElement;
     answerSet: IAnswer[] = [];
+    roundInfo: RadiodInfo[] = [];
     radioInputsSet: HTMLInputElement[] = [];
 
     constructor() {
@@ -12,18 +19,17 @@ export class AnswersComponent {
 
     createItemsList(items: IAnswer[]): HTMLInputElement[] {
         this.answerSet = items;
-        items.forEach(el => {
+        items.forEach((el, i) => {
             const item = document.createElement('li');
             item.classList.add('question-list__item');
-            const radio = document.createElement('input');
-            radio.setAttribute('type', 'radio');
-            radio.setAttribute('name', 'quiz-answer');
+            const radio = new Radio(el);
+
             const label = document.createElement('label');
             label.textContent = el.author;
-            item.append(radio, label);
+            item.append(radio.redio, label);
             this.list.append(item);
-            this.radioInputsSet.push(radio);
         });
+
         return this.radioInputsSet;
     }
 }

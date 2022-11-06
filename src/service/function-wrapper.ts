@@ -12,11 +12,17 @@ export function wrapperFunction(data: IAppData): Promise<IAppData> {
         const gameModel = new GameModel();
         const roundAnswers: IAnswer[] = gameModel.createRoundAnswer(data.imagesData, questionNumber);
         appRender.updateRoundPage(data, roundAnswers);
+        //const result = new Promise<boolean>(res => appRender.roundResult().then(() => res()));
     }
 
-    return new Promise((resolve) => {
+    // const result = new Promise<IAppData>((resolve) => {
+    //     const elements: HTMLElement[] = [];
+
+    //     elements[0].click = () => {
+    //         resolve(data);
+    //     }
+    // });
 
 
-        resolve(data);
-    })
+    return new Promise<IAppData>((res) => res(data));
 }

@@ -32,6 +32,12 @@ class PageRender {
     updateRoundPage(data: IAppData, roundAnswers: IAnswer[]) {
         this.roundPage.upDateRoundInfo(data, roundAnswers);
     }
+
+    // roundResult(): Promise<boolean> {
+    //     return new Promise((res) => {
+    //         this.roundPage.roundResult().then(() => res());
+    //     });
+    // }
 }
 
 const appRender = new PageRender();

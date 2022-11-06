@@ -11,7 +11,7 @@ export class RoundPage {
     public questionInfo: HTMLParagraphElement;
     public score: HTMLParagraphElement
     public question = new QuestionComponent();
-    public answers = new AnswersComponent();
+    public answers: AnswersComponent;
     public nextRoudSection = new NextRoundComponent();
 
     constructor() {
@@ -26,7 +26,7 @@ export class RoundPage {
         this.score = document.createElement('p');
         this.score.classList.add('round-page__info__score');
         this.infoWrap.append(this.questionInfo, this.score);
-
+        this.answers = new AnswersComponent(this.activeNextButton);
         this.wrapper.append(this.main);
     }
 
@@ -42,12 +42,9 @@ export class RoundPage {
         // });
     }
 
-    // roundResult(): Promise<boolean> {
-    //     //return new Promise<boolean>(res => this.answers.result ));
-    // }
-
-    // onChangeHandler: (answer: boolean) => boolean = (answer: boolean) => {
-    //     if ()
-    //         return answer;
-    // }
+    activeNextButton = (num: number): void => {
+        this.nextRoudSection.button.classList.remove('blocked');
+        this.nextRoudSection.message.textContent = 'Нажмите Next, для проверки ответа и перехода к следующему влпросу';
+        //console.log(`Нажата кнопка ${num}`);
+    }
 }

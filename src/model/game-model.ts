@@ -28,4 +28,8 @@ export class GameModel {
         console.log(roundAnswers);
         return roundAnswers;
     }
+
+    checkedAnswer(answers: IAnswer[], number: number): boolean {
+        return answers[number].isTrue;
+    }
 }

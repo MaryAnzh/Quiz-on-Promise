@@ -1,20 +1,15 @@
 import { IAnswer } from "../../../data/answer.interface";
-import { Radio } from '../radio';
-
-type RadiodInfo = {
-    radio: HTMLInputElement,
-    number: number,
-}
 
 export class AnswersComponent {
     list: HTMLUListElement;
     answerSet: IAnswer[] = [];
-    roundInfo: RadiodInfo[] = [];
     radioInputsSet: HTMLInputElement[] = [];
+    activeNextButtpn: (num: number) => void;
 
-    constructor() {
+    constructor(activeNextButtpn: (num: number) => void) {
         this.list = document.createElement('ul');
         this.list.classList.add('answers-list');
+        this.activeNextButtpn = activeNextButtpn;
     }
 
     createItemsList(items: IAnswer[]): HTMLInputElement[] {
@@ -22,14 +17,21 @@ export class AnswersComponent {
         items.forEach((el, i) => {
             const item = document.createElement('li');
             item.classList.add('question-list__item');
-            const radio = new Radio(el);
-
+            const radio = document.createElement('input');
+            radio.setAttribute('type', 'radio');
+            radio.setAttribute('name', 'question');
+            this.radioInputsSet.push(radio);
             const label = document.createElement('label');
             label.textContent = el.author;
-            item.append(radio.redio, label);
+            item.append(radio, label);
             this.list.append(item);
+            radio.onchange = () => this.onChange(i);
         });
 
         return this.radioInputsSet;
+    }
+
+    onChange = (num: number) => {
+        this.activeNextButtpn(num);
     }
 }

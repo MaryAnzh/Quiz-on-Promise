@@ -9,4 +9,9 @@ export class QuestionComponent {
         this.text.classList.add('guestion__text');
         this.wrapper.append(this.text);
     }
+
+    destroy() {
+        this.wrapper.remove();
+        this.text.remove();
+    }
 }

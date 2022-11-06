@@ -4,6 +4,7 @@ export class AnswersComponent {
     list: HTMLUListElement;
     answerSet: IAnswer[] = [];
     radioInputsSet: HTMLInputElement[] = [];
+    labelSet: HTMLLabelElement[] = [];
     activeNextButtpn: (num: number) => void;
 
     constructor(activeNextButtpn: (num: number) => void) {
@@ -22,6 +23,7 @@ export class AnswersComponent {
             radio.setAttribute('name', 'question');
             this.radioInputsSet.push(radio);
             const label = document.createElement('label');
+            this.labelSet.push(label);
             label.textContent = el.author;
             item.append(radio, label);
             this.list.append(item);
@@ -34,4 +36,17 @@ export class AnswersComponent {
     onChange = (num: number) => {
         this.activeNextButtpn(num);
     }
+
+    destroy() {
+        this.radioInputsSet.forEach(el => {
+            el.onchange = null;
+            el.remove();
+        });
+        this.labelSet.forEach(label => label.remove());
+        this.list.remove();
+        this.answerSet = [];
+        this.radioInputsSet = [];
+        this.labelSet = [];
+    }
+
 }

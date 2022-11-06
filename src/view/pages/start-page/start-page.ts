@@ -19,4 +19,5 @@ class StartPage {
     }
 }
 
-export const startPage = new StartPage();
+const startPage = new StartPage();
+export {StartPage, startPage}

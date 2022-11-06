@@ -14,4 +14,11 @@ export class NextRoundComponent {
         this.button.textContent = 'next';
         this.wrapper.append(this.message, this.button);
     }
+
+    destroy() {
+        this.wrapper.remove();
+        this.message.remove();
+        this.button.onclick = null;
+        this.button.remove();
+    }
 }

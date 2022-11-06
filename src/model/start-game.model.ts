@@ -1,5 +1,6 @@
 import { gameState } from "./state-game.model";
 import { wrapperFunction } from '../service/function-wrapper';
+import { appRender } from '../view/pageRender';
 
 export class StartGame {
 
@@ -9,6 +10,10 @@ export class StartGame {
     startGame() {
         gameState.createNewState();
         const data = gameState.appData;
-        wrapperFunction(data);
+        wrapperFunction(data).then((resolve) => {
+            console.log('Игра окончена');
+            appRender.main.innerHTML = '';
+            appRender.startPageRender();
+        });
     }
 }

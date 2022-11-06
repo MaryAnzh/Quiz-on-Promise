@@ -5,44 +5,43 @@ import { IAnswer } from "../data/answer.interface";
 import { appRender } from '../view/pageRender';
 
 export function wrapperFunction(data: IAppData): Promise<IAppData> {
-    let questionNumber = 0;
-    const trueAnswerPrice = 5;
-    appRender.renderRoundPage();
+    return new Promise<IAppData>((dataResolve) => {
+        let questionNumber = 0;
+        const trueAnswerPrice = 5;
+        const answerInGame = 5;
+        const gameModel = new GameModel();
+        let roundAnswers: IAnswer[];
 
-    const game = () => {
-        if (questionNumber < 6) {
-            const gameModel = new GameModel();
-            const roundAnswers: IAnswer[] = gameModel.createRoundAnswer(data.imagesData, questionNumber);
-            appRender.updateRoundPage(data, roundAnswers).then((resolve) => {
-                const isTruAnswer = gameModel.checkedAnswer(roundAnswers, resolve);
-                if (isTruAnswer) {
-                    data.gemePoint += trueAnswerPrice;
-                    data.trueAnswers.push(data.imagesData[questionNumber]);
-                } else {
-                    data.falseAnswers.push(data.imagesData[questionNumber]);
-                }
-                appRender.roundResultPage(data, isTruAnswer, questionNumber).then((resolve) => {
-                    questionNumber += 1;
-                    game();
+        const game = () => {
+            if (questionNumber < answerInGame) {
+                appRender.renderRoundPage();
+                roundAnswers = gameModel.createRoundAnswer(data.imagesData, questionNumber);
+
+                appRender.updateRoundPage(data, roundAnswers).then((resolve) => {
+                    const isTruAnswer = gameModel.checkedAnswer(roundAnswers, resolve);
+                    if (isTruAnswer) {
+                        data.gemePoint += trueAnswerPrice;
+                        data.trueAnswers.push(data.imagesData[questionNumber]);
+                    } else {
+                        data.falseAnswers.push(data.imagesData[questionNumber]);
+                    }
+                    appRender.destroyRoundPage();
+                    appRender.roundResultPage(data, isTruAnswer, questionNumber).then((resolve) => {
+
+                        data.questionNumber += 1;
+                        questionNumber = questionNumber + 1;
+                        roundAnswers = [];
+                        game();
+                    });
+
                 });
 
-            });
-
-        } else {
-            appRender.main.innerHTML = 'Игра окончена';
+            } else {
+                appRender.gameResultPage(data).then(() => {                 
+                    dataResolve(data);
+                });
+            }
         }
-    }
-    game();
-
-
-    // const result = new Promise<IAppData>((resolve) => {
-    //     const elements: HTMLElement[] = [];
-
-    //     elements[0].click = () => {
-    //         resolve(data);
-    //     }
-    // });
-
-
-    return new Promise<IAppData>((res) => res(data));
+        game();
+    });
 }

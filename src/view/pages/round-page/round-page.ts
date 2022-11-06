@@ -37,14 +37,17 @@ export class RoundPage {
         this.main.append(this.infoWrap, this.question.wrapper, this.answers.list, this.nextRoudSection.wrapper);
         const radioSet = this.answers.createItemsList(roundAnswers);
         return radioSet;
-        // const result = new Promise<boolean>((res) => {
-
-        // });
     }
 
     activeNextButton = (num: number): void => {
         this.nextRoudSection.button.classList.remove('blocked');
         this.nextRoudSection.message.textContent = 'Нажмите Next, для проверки ответа и перехода к следующему влпросу';
-        //console.log(`Нажата кнопка ${num}`);
+    }
+
+    destroy() {
+        this.wrapper.remove();
+        this.answers.destroy();
+        this.question.destroy();
+        this.nextRoudSection.destroy();
     }
 }

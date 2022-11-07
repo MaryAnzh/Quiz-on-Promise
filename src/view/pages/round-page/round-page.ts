@@ -1,6 +1,5 @@
 import { IAppData } from '../../../data/app-data.intarface'
 import { QuestionComponent } from '../../components/questionComponent/question';
-import { AnswersComponent } from '../../components/answersComponent/answers';
 import { NextRoundComponent } from '../../components/nextRoudComponent/next-round.component';
 import { IAnswer } from '../../../data/answer.interface';
 

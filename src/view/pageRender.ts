@@ -38,19 +38,9 @@ class PageRender {
         this.main.append(this.roundPage.wrapper);
     }
 
-    updateRoundPage(data: IAppData, roundAnswers: IAnswer[]) {
+    updateRoundPage(data: IAppData, roundAnswers: IAnswer[]): Promise<number> {
         this.roundPage.upDateRoundInfo(data, roundAnswers);
-        return new Promise<number>((resolve) => {
-            const button = this.roundPage.nextRoudSection.button;
-            button.onclick = () => {
-                const checkedRadio: HTMLInputElement[] = this.roundPage.answers.radioInputsSet;
-                checkedRadio.forEach((el, i) => {
-                    if (el.checked) {
-                        resolve(i);
-                    }
-                });
-            }
-        });
+        return this.roundPage.awaitUserChecked().then((num) => num);
     }
 
     roundResultPage(data: IAppData, isTrueAnswre: boolean, trueAnswer: number): Promise<void> {

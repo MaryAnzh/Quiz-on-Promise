@@ -1,0 +1,15 @@
+.next-round-wrapper {
+    width: 500px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+
+    button {
+        padding: 5px 10px;
+        background: blue;
+        text-transform: uppercase;
+        color: white;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+}

@@ -1,4 +1,4 @@
-import { IAppData } from "../data/app-data.intarface";
+import { IAppData } from "../data/app-data.interface";
 import { GameModel } from '../model/game-model';
 import { IAnswer } from "../data/answer.interface";
 
@@ -20,7 +20,7 @@ export function wrapperFunction(data: IAppData): Promise<IAppData> {
                 appRender.updateRoundPage(data, roundAnswers).then((resolve) => {
                     const isTruAnswer = gameModel.checkedAnswer(roundAnswers, resolve);
                     if (isTruAnswer) {
-                        data.gemePoint += trueAnswerPrice;
+                        data.gamePoint += trueAnswerPrice;
                         data.trueAnswers.push(data.imagesData[questionNumber]);
                     } else {
                         data.falseAnswers.push(data.imagesData[questionNumber]);

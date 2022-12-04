@@ -1,6 +1,7 @@
 import { gameState } from "./state-game.model";
 import { wrapperFunction } from '../service/function-wrapper';
 import { appRender } from '../view/pageRender';
+
 export class StartGame {
 
     constructor() {

@@ -1,4 +1,4 @@
-import { IAppData } from "../data/app-data.intarface"
+import { IAppData } from "../data/app-data.interface"
 import { IImageData } from "../data/image-data.interface";
 import { imagesSet } from '.././data/data';
 
@@ -7,7 +7,7 @@ class GameDataState {
     public appData: IAppData = {
         imagesData: [],
         questionNumber: 0,
-        gemePoint: 0,
+        gamePoint: 0,
         trueAnswers: [],
         falseAnswers: [],
     }
@@ -18,7 +18,7 @@ class GameDataState {
     createNewState(): IAppData {
         this.appData.imagesData = this.imagesData;
         this.appData.questionNumber = 0;
-        this.appData.gemePoint = 0;
+        this.appData.gamePoint = 0;
         this.appData.trueAnswers = [];
         this.appData.falseAnswers = [];
 

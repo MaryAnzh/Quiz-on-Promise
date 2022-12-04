@@ -1,5 +1,5 @@
 import { IAnswer } from '../data/answer.interface';
-import { IAppData } from '../data/app-data.intarface';
+import { IAppData } from '../data/app-data.interface';
 import { RoundPage } from './pages/round-page/round-page';
 import { startPage, StartPage } from '../view/pages/start-page/start-page';
 
@@ -43,15 +43,15 @@ class PageRender {
         return this.roundPage.awaitUserChecked().then((num) => num);
     }
 
-    roundResultPage(data: IAppData, isTrueAnswre: boolean, trueAnswer: number): Promise<void> {
-        if (isTrueAnswre) {
+    roundResultPage(data: IAppData, isTrueAnswer: boolean, trueAnswer: number): Promise<void> {
+        if (isTrueAnswer) {
             this.main.innerHTML = `<h2>Поздравляем, вы ответили правильно!</h2>
-                    <p>Ваш Score ${data.gemePoint}</p>
+                    <p>Ваш Score ${data.gamePoint}</p>
                     `;
         } else {
             this.main.innerHTML = `<h2>Вы ошиблись :(</h2>
             <p>Картину "${data.imagesData[trueAnswer].name}" нарисовал ${data.imagesData[trueAnswer].author}</p>        
-            <p>Ваш Score ${data.gemePoint}</p>                `;
+            <p>Ваш Score ${data.gamePoint}</p>                `;
         }
         this.nextRoundButton.textContent = 'Next';
         this.main.append(this.nextRoundButton);
@@ -66,7 +66,7 @@ class PageRender {
 
     gameResultPage(data: IAppData): Promise<void> {
         this.main.innerHTML = `<h3>Игра окончена</h3>
-        <p>Ваш Score: ${data.gemePoint}</p>
+        <p>Ваш Score: ${data.gamePoint}</p>
         <p>Верные ответы: ${data.trueAnswers.length}</p>
         <p>Неверные ответы: ${data.falseAnswers.length}</p>
         `;

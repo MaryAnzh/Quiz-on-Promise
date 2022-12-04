@@ -1,6 +1,6 @@
-import { IAppData } from '../../../data/app-data.intarface'
+import { IAppData } from '../../../data/app-data.interface'
 import { QuestionComponent } from '../../components/questionComponent/question';
-import { NextRoundComponent } from '../../components/nextRoudComponent/next-round.component';
+import { NextRoundComponent } from '../../components/nextRoundComponent/next-round.component';
 import { IAnswer } from '../../../data/answer.interface';
 
 export class RoundPage {
@@ -12,7 +12,7 @@ export class RoundPage {
     public question = new QuestionComponent();
     public answersList = document.createElement('ul');
     private _radioInputsSet: HTMLInputElement[] = [];
-    public nextRoudSection = new NextRoundComponent();
+    public nextRoundComponent = new NextRoundComponent();
 
     constructor() {
         this.wrapper = document.createElement('div');
@@ -32,9 +32,9 @@ export class RoundPage {
 
     upDateRoundInfo(data: IAppData, roundAnswers: IAnswer[]) {
         this.questionInfo.innerHTML = `Вопрос ${data.questionNumber + 1} из 5`;
-        this.score.innerHTML = `Score: <span>${data.gemePoint}</span>`;
+        this.score.innerHTML = `Score: <span>${data.gamePoint}</span>`;
         this.question.text.textContent = `Кто автор картины "${data.imagesData[data.questionNumber].name}"`;
-        this.main.append(this.infoWrap, this.question.wrapper, this.answersList, this.nextRoudSection.wrapper);
+        this.main.append(this.infoWrap, this.question.wrapper, this.answersList, this.nextRoundComponent.wrapper);
         this.createItemsList(roundAnswers);
     }
 
@@ -56,7 +56,7 @@ export class RoundPage {
 
     awaitUserChecked(): Promise<number> {
         return new Promise<number>((resolve) => {
-            const button = this.nextRoudSection.button;
+            const button = this.nextRoundComponent.button;
             button.onclick = () => {
                 const checkedRadio: HTMLInputElement[] = this._radioInputsSet;
                 checkedRadio.forEach((el, i) => {
@@ -69,14 +69,14 @@ export class RoundPage {
     }
 
     onChange = () => {
-        this.nextRoudSection.button.classList.remove('blocked');
-        this.nextRoudSection.message.textContent = 'Нажмите Next, для проверки ответа и перехода к следующему влпросу';
+        this.nextRoundComponent.button.classList.remove('blocked');
+        this.nextRoundComponent.message.textContent = 'Нажмите Next, для проверки ответа и перехода к следующему вопросу';
     }
 
     destroy() {
         this.wrapper.remove();
         this.question.destroy();
-        this.nextRoudSection.destroy();
+        this.nextRoundComponent.destroy();
         this._radioInputsSet.forEach(el => el.onchange = null);
     }
 }
